@@ -45,7 +45,7 @@ if 'centos' in os_info or 'red hat' in os_info:
 
 elif 'debian' in os_info:
     command1="apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l"
-    command2=""
+    command2="apt-get upgrade -s | grep -i security | wc -l"
     out=get_command_output(command1)
     if out:
         data["packages_to_be_updates"]=out.decode()
