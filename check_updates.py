@@ -48,7 +48,18 @@ elif 'debian' in os_info:
     command2=""
     out=get_command_output(command1)
     if out:
-        data["packages_to_be_updates"]=out
+        data["packages_to_be_updates"]=out.decode()
+    else:
+        pass
+
+    out=get_command_output(command2)
+
+    if out:
+        data["security_updates"]=out.decode()
+    else:
+        pass
+   
+    
 
                 
 else:    
@@ -60,5 +71,5 @@ else:
                 data['packages_to_be_updated'] = line.split()[0]
             if ('updates are security updates' in line) or ('updates are standard security updates' in line):
                 data['security_updates'] = line.split()[0]
-                
+
 print(json.dumps(data))
