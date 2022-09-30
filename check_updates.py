@@ -48,14 +48,14 @@ elif 'debian' in os_info:
     command2="apt-get upgrade -s | grep -i security | wc -l"
     out=get_command_output(command1)
     if out:
-        data["packages_to_be_updated"]=out.decode()
+        data["packages_to_be_updated"]=out.decode().replace("\n","")
     else:
         pass
 
     out=get_command_output(command2)
 
     if out:
-        data["security_updates"]=out.decode()
+        data["security_updates"]=out.decode().replace("\n","")
     else:
         pass
    
